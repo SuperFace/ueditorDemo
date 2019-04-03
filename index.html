@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="dns-prefetch" href="//s.xuetangx.com" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        showProcessingMessages: false, //关闭js加载过程信息
+        messageStyle: "none", //不显示信息
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [
+            ['$','$'],
+            ["\\(","\\)"],
+            ['[mathjaxinline]','[/mathjaxinline]']
+          ],
+          displayMath: [
+            ['$$','$$'], 
+            ["\\[","\\]"],
+            ['[mathjax]','[/mathjax]']
+          ],
+          processEscapes: true
+        },
+        "HTML-CSS": { 
+          showMathMenu: false,
+          availableFonts: ["STIX", "TeX"] 
+        }
+      });
+  </script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script> -->
+    <script type="text/javascript" src="https://s.xuetangx.com/resource/mathjax/MathJax.js?config=TeX-MML-AM_HTMLorMML-full"></script>
+    <title>my</title>
+  </head>
+  <body onload="load()">
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script>
+      function load(){
+       window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, window.document.body]);
+      }
+    </script>
+  </body>
+</html>
