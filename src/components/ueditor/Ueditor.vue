@@ -70,9 +70,9 @@ export default {
          		 const _this = this;
          		setTimeout(function(){//过段时间在加载
         		  _this.setUEContent(val);
-        	},500)
+        	    },500)
          	}
-        },
+        }
     }
 }
 </script>

@@ -28,7 +28,8 @@
     UEDITOR_HOME_URL: URL,
 
     // 服务器统一请求接口路径
-    serverUrl: URL + "php/controller.php",
+    serverUrl: "/oplat/ueditor/ue",
+    //serverUrl: URL + "php/controller.php",
 
     //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
     toolbars: [
@@ -205,7 +206,7 @@
     //,imagePopup:true      //图片操作的浮层开关，默认打开
 
     //,autoSyncData:true //自动同步编辑器要提交的数据
-    //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
+    ,emotionLocalization:true //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
     //粘贴只保留标签，去除标签所有属性
     //,retainOnlyLabelPasted: false
@@ -269,7 +270,7 @@
     //    'square' : ''   //'■ 小方块'
     //}
     //,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
-    //,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
+    ,listiconpath : URL+'themes/ueditor-list/' //'http://bs.baidu.com/listicon/'//自定义标号的路径
     //,maxListLevel : 3 //限制可以tab的级数, 设置-1为不限制
 
     //,autoTransWordToList:false  //禁止word中粘贴进来的列表自动变成列表标签

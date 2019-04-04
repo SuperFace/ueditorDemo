@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Kity Formula Editor - v1.0.0 - 2019-04-02
+ * Kity Formula Editor - v1.0.0 - 2019-04-04
  * https://github.com/kitygraph/formula
  * GitHub: https://github.com/kitygraph/formula.git 
  * Copyright (c) 2019 Baidu Kity Group; Licensed MIT
@@ -7622,11 +7622,13 @@ _p[49] = {
                 this.toolbarContainer = createToolbarContainer(currentDocument);
                 this.editArea = createEditArea(currentDocument);
                 this.canvasContainer = createCanvasContainer(currentDocument);
+                this.linefeedContainer = formulaLineFeed(currentDocument);
                 this.scrollbarContainer = createScrollbarContainer(currentDocument);
                 this.toolbarWrap.appendChild(this.toolbarContainer);
                 this.container.appendChild(this.toolbarWrap);
                 this.editArea.appendChild(this.canvasContainer);
                 this.container.appendChild(this.editArea);
+                this.container.appendChild(this.linefeedContainer);
                 this.container.appendChild(this.scrollbarContainer);
                 this.initComponents();
                 this.initServices();
@@ -7651,7 +7653,7 @@ _p[49] = {
             updateContainerSize: function(container, toolbar, editArea) {
                 var containerBox = container.getBoundingClientRect(), toolbarBox = toolbar.getBoundingClientRect();
                 editArea.style.width = containerBox.width + "px";
-                editArea.style.height = containerBox.bottom - toolbarBox.bottom + "px";
+                editArea.style.height = containerBox.bottom - toolbarBox.bottom - 60 + "px";
             },
             // 初始化服务
             initServices: function() {
@@ -7742,6 +7744,13 @@ _p[49] = {
         function createScrollbarContainer(doc) {
             var container = doc.createElement("div");
             container.className = "kf-editor-edit-scrollbar";
+            return container;
+        }
+        //自定义
+        function formulaLineFeed(doc) {
+            var container = doc.createElement("div");
+            container.className = "kf-editor-linefeed";
+            container.innerHTML = '<div class="select-display-box"><span class="select select-inline selected" data-select="inline-block">行内显示</span><span class="select-split">or</span><span class="select select-diaplay" data-select="block">块级显示</span></div>';
             return container;
         }
         return UIComponent;

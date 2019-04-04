@@ -17,12 +17,12 @@
         }
         #loading {
             height: 32px;
-            width: 340px;
+            width: 300px;
             line-height: 32px;
             position: absolute;
             top: 42%;
             left: 50%;
-            margin-left: -170px;
+            margin-left: -150px;
             font-family: arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
         }
         #loading img {
@@ -83,15 +83,27 @@
                 this.execCommand( "render", imgLatex || "\\placeholder" );
                 this.execCommand( "focus" );
 
+                $(".select-display-box").find(".select").on("click", function(){
+                    var $this = $(this);
+                    $(".select-display-box").find(".select").removeClass("selected");
+                    $this.addClass("selected");
+                });
+
                 window.kfe = this;
 
             } );
 
             dialog.onok = function(){
                 kfe.execCommand('get.image.data', function(data){
-                    var latex = kfe.execCommand('get.source').replace(/\\/g, "\\\\")
-                    var display = "inline-block";
-                    editor.execCommand('inserthtml', '<img class="kfformula" style="vertical-align: middle;" src="'+ data.img +'" data-display="' + display + '" data-latex="' + latex + '" />');
+                    var latex = kfe.execCommand('get.source');
+                    var _latex = latex.replace(/\\/g, "\\\\");
+                    var display = $(".select-display-box").find(".select.selected").attr("data-select");
+                    var imgDisplay = display=='block' ? 'display:block;margin:0 auto;' : '';
+                    var _html = '<img class="kfformula" style="vertical-align: middle;' + imgDisplay + '" src="'+ data.img +'" data-display="' + display + '" data-slatex="' + _latex + '" data-latex="' + latex + '" />';
+                    if(display == 'block'){
+                        _html = '<p>' + _html + '</p>';
+                    }
+                    editor.execCommand('inserthtml', _html);
                     //var _latexHTML = '<span class="kfformula-latex" readonly="true" disabled="true" style="position:relative;display:inline-block;padding:0 5px;">$' + latex + '$</span>';
                     //editor.execCommand('inserthtml', _latexHTML);
                     dialog.close();
