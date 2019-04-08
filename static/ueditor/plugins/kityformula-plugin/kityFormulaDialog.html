@@ -98,7 +98,15 @@
                     var latex = kfe.execCommand('get.source');
                     var _latex = latex.replace(/\\/g, "\\\\");
                     var display = $(".select-display-box").find(".select.selected").attr("data-select");
-                    var imgDisplay = display=='block' ? 'display:block;margin:0 auto;' : '';
+                    var imgDisplay = '';
+                    if(display=='block'){
+                        latex = '$$' + latex + '$$';
+                        _latex = '$$' + _latex + '$$';
+                        imgDisplay = 'display:block;margin:0 auto;';
+                    }else{
+                        latex = '$' + latex + '$';
+                        _latex = '$' + _latex + '$';
+                    }
                     var _html = '<img class="kfformula" style="vertical-align: middle;' + imgDisplay + '" src="'+ data.img +'" data-display="' + display + '" data-slatex="' + _latex + '" data-latex="' + latex + '" />';
                     if(display == 'block'){
                         _html = '<p>' + _html + '</p>';
