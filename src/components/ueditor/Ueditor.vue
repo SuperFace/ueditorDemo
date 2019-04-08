@@ -47,7 +47,16 @@ export default {
                 if(_this.writeMsg!=''){_this.editor.setContent(_this.editBase64Formula(_this.writeMsg));}
             },500)
            _this.isinit=true;
-        }) 
+        });
+        this.editor.addListener('blur', (e) => {
+            this.$emit('blur', this.id)
+        });
+        this.editor.addListener("focus", (e) => {
+            this.$emit('contentChange', this.id);
+        });
+        this.editor.addListener("contentChange", (e) => {
+            this.$emit('contentChange', this.id);
+        });
     },
     destoryed() {
         this.editor.destory();

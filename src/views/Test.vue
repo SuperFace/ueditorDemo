@@ -21,19 +21,19 @@
 	       <el-tabs  v-model="activeName" type="card">
 		        <el-tab-pane label="题干" name="first" > 
 		        	<div v-show="activeName=='first'">
-		        	<Ueditor :writeMsg="defaultMsg1"  :id="ueditor1" :config="config1"  ref="ue1" ></Ueditor> 
+		        	<Ueditor :writeMsg="defaultMsg1"  :id="ueditor1" :config="config1" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue1" ></Ueditor> 
 		        	</div>
                     
 		        </el-tab-pane>
 		        <el-tab-pane label="分析" name="second" > 
 		        	<div v-show="activeName=='second'">
-		        	<Ueditor :writeMsg="defaultMsg2" :id="ueditor2"  :config="config2"  ref="ue2" ></Ueditor>
+		        	<Ueditor :writeMsg="defaultMsg2" :id="ueditor2"  :config="config2" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue2" ></Ueditor>
 		        	</div>
 		        
 		        </el-tab-pane>
 		        <el-tab-pane label="解答" name="third" > 
 		        	<div v-show="activeName=='third'">
-		        	   <Ueditor :writeMsg="defaultMsg3"  :id="ueditor3" :config="config3"  ref="ue3" ></Ueditor>
+		        	   <Ueditor :writeMsg="defaultMsg3"  :id="ueditor3" :config="config3" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue3" ></Ueditor>
 		        	</div>
 		        </el-tab-pane>
 	        </el-tabs>	
@@ -157,7 +157,20 @@
             if("MathJax" in window) window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, doc]);
           });
         }
-      }
+			},
+			
+			//editor blur
+			editorBlur: function(editorId){
+				console.log("blur",editorId);
+			},
+			//editor focus
+			editorFocus: function(editorId){
+				console.log("focus", editorId);
+			},
+			//editor contentChange
+			editorContentChange: function(editorId){
+				console.log("contentChange", editorId);
+			}
 		},
 		mounted() {
 
