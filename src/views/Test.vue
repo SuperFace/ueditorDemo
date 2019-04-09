@@ -21,19 +21,19 @@
 	       <el-tabs  v-model="activeName" type="card">
 		        <el-tab-pane label="题干" name="first" > 
 		        	<div v-show="activeName=='first'">
-		        	<Ueditor :writeMsg="defaultMsg1"  :id="ueditor1" :config="config1" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue1" ></Ueditor> 
+		        	<Ueditor :writeMsg="defaultMsg1"  :id="ueditor1" :config="config1" :params="{'ref': 'ue1'}" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue1" ></Ueditor> 
 		        	</div>
                     
 		        </el-tab-pane>
 		        <el-tab-pane label="分析" name="second" > 
 		        	<div v-show="activeName=='second'">
-		        	<Ueditor :writeMsg="defaultMsg2" :id="ueditor2"  :config="config2" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue2" ></Ueditor>
+		        	<Ueditor :writeMsg="defaultMsg2" :id="ueditor2"  :config="config2" :params="{'ref': 'ue2'}" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue2" ></Ueditor>
 		        	</div>
 		        
 		        </el-tab-pane>
 		        <el-tab-pane label="解答" name="third" > 
 		        	<div v-show="activeName=='third'">
-		        	   <Ueditor :writeMsg="defaultMsg3"  :id="ueditor3" :config="config3" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue3" ></Ueditor>
+		        	   <Ueditor :writeMsg="defaultMsg3"  :id="ueditor3" :config="config3" :params="{'ref': 'ue3'}" @blur="editorBlur" @focus="editorFocus" @contentChange="editorContentChange" ref="ue3" ></Ueditor>
 		        	</div>
 		        </el-tab-pane>
 	        </el-tabs>	
@@ -117,9 +117,9 @@
 		methods: {
 			//点击提交按钮
 			submitForm(){
-				alert("题干是："+this.$refs.ue1.getUEContent());
-				alert("分析是："+this.$refs.ue2.getUEContent());
-				alert("解答是："+this.$refs.ue3.getUEContent())
+				alert("题干是："+this.defaultMsg1);//this.$refs.ue1.getUEContent()
+				alert("分析是："+this.defaultMsg2);//this.$refs.ue2.getUEContent()
+				alert("解答是："+this.defaultMsg3)//this.$refs.ue3.getUEContent()
 			},
 			//公式渲染：加载包含图片公式的富文本数据
 			getData: function(){
@@ -160,16 +160,25 @@
 			},
 			
 			//editor blur
-			editorBlur: function(editorId){
-				console.log("blur",editorId);
+			editorBlur: function(params){
+				console.log("blur",params);
 			},
 			//editor focus
-			editorFocus: function(editorId){
-				console.log("focus", editorId);
+			editorFocus: function(params){
+				console.log("focus", params);
 			},
 			//editor contentChange
-			editorContentChange: function(editorId){
-				console.log("contentChange", editorId);
+			editorContentChange: function(params){
+				console.log("contentChange", params);
+				if(params.ref === 'ue1'){
+						this.defaultMsg1 = this.$refs[params.ref].getUEContent();
+				}
+				if(params.ref === 'ue2'){
+						this.defaultMsg2 = this.$refs[params.ref].getUEContent();
+				}
+				if(params.ref === 'ue3'){
+						this.defaultMsg3 = this.$refs[params.ref].getUEContent();
+				}
 			}
 		},
 		mounted() {

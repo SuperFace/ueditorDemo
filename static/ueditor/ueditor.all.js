@@ -28853,8 +28853,8 @@ UE.ui = baidu.editor.ui = {};
     },
     _onMouseDown: function(e) {
       var target = e.target || e.srcElement,
-        tagName = target && target.tagName && target.tagName.toLowerCase();
-      if (tagName == "input" || tagName == "object" || tagName == "object") {
+        tagName = target && target.tagName && target.tagName.toLowerCase(), classList = target.classList;
+      if (tagName == "input" || tagName == "object" || tagName == "object" ) {
         return false;
       }
     },

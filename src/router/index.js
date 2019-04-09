@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import hello from '@/views/hello'
 import add from '@/views/Test'
 import edit from '@/views/Testedit'
+import model from '@/views/model'
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,12 @@ export default new Router({
       path: '/edit',
       name: 'testedit',
       component: edit
+    },
+    {
+      name:'模拟页面',
+      path: '/model',
+      name: 'model',
+      component: model
     }
   ]
 })
