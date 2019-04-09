@@ -78,11 +78,13 @@
                 // this指向KFEditor
                 var rng = editor.selection.getRange(),
                     img = rng.getClosedNode(),
-                    imgLatex = img && $(img).attr('data-latex');
+                    imgLatex = img && $(img).attr('data-latex'), _display = img && $(img).attr("data-display");
 
                 this.execCommand( "render", imgLatex || "\\placeholder" );
                 this.execCommand( "focus" );
 
+                $(".select-display-box").find(".select").removeClass("selected");
+                $(".select-display-box").find(".select[data-select="+(_display || 'inline-block')+"]").addClass("selected");
                 $(".select-display-box").find(".select").on("click", function(){
                     var $this = $(this);
                     $(".select-display-box").find(".select").removeClass("selected");
