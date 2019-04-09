@@ -46,14 +46,10 @@ export default {
         this.editor = UE.delEditor(this.id);
         this.editor = UE.getEditor(this.id,this.config);
 
-        // 去掉了 input change 监听，不然会有bug
-        // this.editor.on('undo redo blur', () => {
-        //    // this.$emit('change', this.editor.getContentTxt())
-        // })
-        // // 焦点离开编辑器，进入其他编辑器或其他操作出发blur事件，让编辑器消失
         this.editor.on('blur', () => {
             this.$emit('blur', this.params);
         });
+
         const contentChangeHandler = null;
         this.editor.addListener("contentChange", (e) => {
             if(contentChangeHandler) clearTimeout(contentChangeHandler);
@@ -61,25 +57,13 @@ export default {
                 this.$emit('contentChange', this.params);
             }, 300);
         });
+        
         this.editor.addListener("ready",function(){
             setTimeout(function(){//过段时间在加载
                 if(_this.writeMsg!=''){_this.editor.setContent(_this.editBase64Formula(_this.writeMsg));}
             },300)
            _this.isinit=true;
-        })
-
-        // this.editor.addListener('blur',function(editor){
-        //     _this.$emit('blur',_this.editorid)
-        //     const text = _this.editor.getContentTxt();
-        //     _this.$emit('textcontent', text);
-        // });
-        // this.editor.addListener("contentChange",function(){
-        //     const text = _this.editor.getContentTxt();
-        //     _this.$emit('textcontent', text);
-        //     //var d = editor.getContent();
-        // });
-        
-        
+        })        
     },
     destoryed() {
         this.editor.destory();
