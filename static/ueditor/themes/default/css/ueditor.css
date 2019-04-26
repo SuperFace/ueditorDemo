@@ -942,6 +942,11 @@ div.edui-box {
 .edui-default  .edui-for-simpleupload  .edui-icon {
     background-position: -380px 0px;
 }
+.edui-default .edui-for-fillblank .edui-icon{
+    width:20px;
+    height:20px;
+    background: url(../images/fillblank-icon.png) !important;
+}
 
 /*splitbutton*/
 .edui-default .edui-toolbar .edui-splitbutton-body .edui-arrow,

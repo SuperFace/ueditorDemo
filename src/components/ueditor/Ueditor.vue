@@ -9,12 +9,12 @@ import '../../../static/ueditor/ueditor.config.js'
 import '../../../static/ueditor/ueditor.all.js'
 import '../../../static/ueditor/lang/zh-cn/zh-cn.js'
 
-//引入填空题插件
-import '../../../static/ueditor/plugins/fillblank-plugin/addFillblankbutton.js'
+// //引入填空题插件
+// import '../../../static/ueditor/third-party/fillblank/addFillblankbutton.js'
 
 //引入公式插件
-import '../../../static/ueditor/plugins/kityformula-plugin/addKityFormulaDialog.js'
-import '../../../static/ueditor/plugins/kityformula-plugin/defaultFilterFix.js'
+import '../../../static/ueditor/third-party/kityformula/addKityFormulaDialog.js'
+import '../../../static/ueditor/third-party/kityformula/defaultFilterFix.js'
 
 export default {
     name: "UEditor",
